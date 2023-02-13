@@ -1,0 +1,22 @@
+
+header {
+    display: block;
+    justify-content: center;
+    align-content: center;
+    max-width: 100%;
+}
+
+body {
+    display: block;
+    justify-content: center;
+    align-content: center;
+}
+.citySearch {
+display: block;
+margin: auto; 
+}
+
+.displayWeather {
+    display: block;
+    margin: 2px;
+}
