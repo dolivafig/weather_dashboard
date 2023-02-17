@@ -5,21 +5,30 @@ var cityInput = document.querySelector("#cityInput");
 var submitbtn = document.querySelector("#searchbtn");
 var cityList = document.querySelector(".cityList");
 // https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={d2293f90cfd082b6965ab5c95c4fbe70}
+document.getElementById("displayWeather").style.display = "none";
+document.getElementById("forecastList").style.display = "none"
 
 submitbtn.addEventListener("click", function (event) {
+    document.getElementById("displayWeather").style.display = "flex";
+    document.getElementById("forecastList").style.display = "flex"
     var city = cityInput.value;
     localStorage.setItem("city", city);
     var citybtn = document.createElement("button");
+    // citybtn.setAttribute("style", "background-color: blue")
     citybtn.innerHTML = city;
     cityList.appendChild(citybtn);
 
     getLongLat(city);
+    
 })
-$(".cityList").on("click", function (event) {
-    displayWeather();
-    displayForecast();
-}
-)
+
+$("#cityList").on("click", function(event) {
+    console.log(event.target.innerHTML)
+    getLongLat(event.target.innerHTML)
+    cityInput.value = event.target.innerHTML;
+    
+})
+
 
 function getLongLat(city) {
     fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + APIkey, {
@@ -50,7 +59,7 @@ function getWeather(lat, lon) {
             console.log(data.city.name);
             console.log(data.list[0]);
             console.log(data.list[0].dt_txt);
-            console.log(data.list[0].weather.icon);
+            console.log(data.list[0].weather[0].icon);
             console.log(data.list[0].main.temp);
             console.log(data.list[0].main.humidity);
             console.log(data.list[0].wind.speed);
@@ -61,62 +70,59 @@ function getWeather(lat, lon) {
 
 }
 
-var cityname = document.querySelector("#cityName");
-var displaydate = document.querySelector("#displaydate");
-var temp = document.querySelector("#temp");
-var humidity = document.querySelector("#humidity");
-var windspeed = document.querySelector("#windspeed");
-var icon = "";
-
 function displayWeather(data) {
 
-    cityname.innerHTML = data.city.name;
-    displaydate.innerHTML = data.list[0].dt_txt;
-    icon = data.list[0].weather.icon;
-    temp.innerHTML = data.list[0].main.temp;
-    humidity.innerHTML = data.list[0].main.humidity;
-    windspeed.innerHTML = data.list[0].wind.speed;
+    $("#cityName").text(data.city.name);
+    $("#displaydate").text(data.list[0].dt_txt.split(" ")[0]);
+    $("#temp").text(data.list[0].main.temp);
+    $("#humidity").text(data.list[0].main.humidity);
+    $("#windspeed").text(data.list[0].wind.speed);
+    var icon = data.list[0].weather[0].icon;
+    $("#wicon").attr("src","http://openweathermap.org/img/w/"+icon+".png");
 
+    // cityname.innerHTML = data.city.name;
+    // displaydate.innerHTML = data.list[0].dt_txt;
+    // icon = data.list[0].weather[0].icon;
+    // temp.innerHTML = data.list[0].main.temp;
+    // humidity.innerHTML = data.list[0].main.humidity;
+    // windspeed.innerHTML = data.list[0].wind.speed;
 }
 
 function displayForecast(data) {
-        var displayfdate = document.querySelector("#fdate1");
-        var ftemp = document.querySelector("#ftemp1");
-        var fhumidity = document.querySelector("#fhum1");
-        var fwindspeed = document.querySelector("#fwindsp1");
-        var ficon = document.querySelector("#ficon1");
 
-        displayfdate.innerHTML = data.list[8].dt_txt.split(" ")[0];
-        ficon = data.list[8].weather.icon;
-        ftemp.innerHTML = data.list[8].main.temp;
-        fhumidity.innerHTML = data.list[8].main.humidity;
-        fwindspeed.innerHTML = data.list[8].wind.speed;
+        $("#fdate1").text(data.list[8].dt_txt.split(" ")[0]);
+        $("#ftemp1").text(data.list[8].main.temp);
+        var icon1= data.list[8].weather[0].icon;
+        $("#wicon1").attr("src", "http://openweathermap.org/img/w/"+icon1+".png")
+        $("#fhum1").text(data.list[24].main.humidity);
+        $("#fwindsp1").text(data.list[24].wind.speed);
 
-        displayAll (data);
-    }
-
-    function displayAll(data){
-        $("#fdate2").text(data.list[16].dt_txt);
+        $("#fdate2").text(data.list[16].dt_txt.split(" ")[0]);
         $("#ftemp2").text(data.list[16].main.temp);
-        $("#ficon2").text(data.list[16].weather.icon);
+        var icon2 = data.list[16].weather[0].icon;
+        console.log(icon2)
+        $("#wicon2").attr("src", "http://openweathermap.org/img/w/"+icon2+".png")
         $("#fhum2").text(data.list[16].main.humidity);
         $("#fwindsp2").text(data.list[16].wind.speed);
 
-        $("#fdate3").text(data.list[24].dt_txt);
+        $("#fdate3").text(data.list[24].dt_txt.split(" ")[0]);
         $("#ftemp3").text(data.list[24].main.temp);
-        $("#ficon3").text(data.list[24].weather.icon);
+        var icon3 =  data.list[24].weather[0].icon;
+        $("#wicon3").attr("src", "http://openweathermap.org/img/w/"+icon3+".png")
         $("#fhum3").text(data.list[24].main.humidity);
         $("#fwindsp3").text(data.list[24].wind.speed);
         
-        $("#fdate4").text(data.list[32].dt_txt);
+        $("#fdate4").text(data.list[32].dt_txt.split(" ")[0]);
         $("#ftemp4").text(data.list[32].main.temp);
-        $("#ficon4").text(data.list[32].weather.icon);
+        var icon4 = data.list[32].weather[0].icon;
+        $("#wicon4").attr("src", "http://openweathermap.org/img/w/"+icon4+".png")
         $("#fhum4").text(data.list[32].main.humidity);
         $("#fwindsp4").text(data.list[32].wind.speed);
 
-        $("#fdate5").text(data.list[39].dt_txt);
+        $("#fdate5").text(data.list[39].dt_txt.split(" ")[0]);
         $("#ftemp5").text(data.list[39].main.temp);
-        $("#ficon5").text(data.list[39].weather.icon);
+        var icon5 = data.list[39].weather[0].icon;
+        $("#wicon5").attr("src", "http://openweathermap.org/img/w/"+icon5+".png")
         $("#fhum5").text(data.list[39].main.humidity);
         $("#fwindsp5").text(data.list[39].wind.speed);
     }

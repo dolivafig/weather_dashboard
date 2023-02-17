@@ -1,22 +1,129 @@
-
-header {
-    display: block;
-    justify-content: center;
-    align-content: center;
-    max-width: 100%;
+*{
+    box-sizing: border-box;
+    font-style: oblique;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
-body {
-    display: block;
+header{
+    display: flex;
     justify-content: center;
     align-content: center;
+    
 }
+
 .citySearch {
-display: block;
-margin: auto; 
+display: flex;
+flex-wrap: wrap;
+justify-content: left;
+align-items: center;
+margin: 3px; 
+padding: 10px;
+width: auto;
+height: auto;
+}
+.cityInput{
+    margin-left: 8px;
+}
+.searchbtn{
+    margin-right: 5px;
+}
+.cityList {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin: 2px;
+    padding: 2px;
+}
+
+.cityList button{
+    border: solid;
+    border-radius: 5px;
+    background-color: rgb(192, 216, 226);
+}
+.cityList button:hover {
+    box-shadow: 0 0 25px rgb(0, 0, 0);
+    flex-shrink: 3;
 }
 
 .displayWeather {
-    display: block;
+    margin: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    height: auto;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+    align-content: center;
+}
+
+.forecastList{
+    margin-top: 55px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: row;
+}
+.forecast {
+    background-color: beige;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    border: solid;
+    border-radius: 10px;
+    width: 255px;
+    height: auto;
+    margin:auto;
+}
+.forecast:hover {
+    box-shadow: 0 0 25px rgb(0, 0, 0);
+    flex-shrink: 3;
+}
+
+p{
+    font-size: 24px;
+}
+h3{
+    font-size: 35px;
+}
+
+#wicon {
+    background-color: rgb(83, 83, 83);
+}
+/* header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    max-width: 100%;
+    padding:10px;
+
+}
+
+body {
+    justify-content: center;
+}
+
+
+
+
+
+.cityOptions {
+display: block;
+}
+
+.displayWeather {
+    display: flex;
     margin: 2px;
 }
+
+.forecastList{
+    display: inline-flex;
+    margin: 25px;
+    padding: 2px;
+    justify-content: center;
+} */
