@@ -31,7 +31,7 @@ $("#cityList").on("click", function(event) {
 
 
 function getLongLat(city) {
-    fetch('http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + APIkey, {
+    fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + APIkey, {
         //   method: 'GET', //GET is the default.
         //   credentials: 'same-origin', // include, *same-origin, omit
         //   redirect: 'follow', // manual, *follow, error
